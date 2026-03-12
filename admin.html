@@ -33,7 +33,7 @@ body{background:#f0f2f5;font-family:'Inter',sans-serif}
 
 <!-- Auth guard -->
 <script>
-if (sessionStorage.getItem('kadapa_admin_auth') !== 'true') {
+if (!sessionStorage.getItem('kdp_admin')) {
   window.location.href = 'login.html';
 }
 </script>
@@ -208,11 +208,21 @@ if (sessionStorage.getItem('kadapa_admin_auth') !== 'true') {
 <script>
 let deptChart, statusChart, trendChart, resolveChart;
 
-window.addEventListener('DOMContentLoaded', () => {
-  const u = sessionStorage.getItem('kadapa_admin_user') || 'admin';
-  document.getElementById('adminAvatar').textContent = u[0].toUpperCase();
-  loadDashboard();
-  renderAnnouncements();
+window.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const adminToken = sessionStorage.getItem('kdp_admin');
+    if (!adminToken) {
+        window.location.href = 'login.html';
+        return;
+    }
+    // Default admin name
+    document.getElementById('adminAvatar').textContent = 'A';
+    await loadDashboard();
+    await renderAnnouncements();
+  } catch (err) {
+    console.error('Dashboard Init Error:', err);
+    // Silent fail or redirect
+  }
 });
 
 async function showPanel(name) {
@@ -348,8 +358,7 @@ async function deleteAnn(id) {
 }
 
 function logoutAdmin() {
-  sessionStorage.removeItem('kadapa_admin_auth');
-  sessionStorage.removeItem('kadapa_admin_user');
+  sessionStorage.removeItem('kdp_admin');
   window.location.href = 'login.html';
 }
 </script>
