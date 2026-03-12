@@ -42,7 +42,7 @@ if (!sessionStorage.getItem('kdp_admin')) {
 <div class="admin-sidebar" id="sidebar">
   <div class="p-4 border-bottom" style="border-color:rgba(255,255,255,.1)!important">
     <div class="d-flex align-items-center gap-3">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Emblem_of_Andhra_Pradesh.svg" alt="Logo" height="40">
+      <img src="assets/kadapa_map_logo.png" alt="Logo" height="50">
       <div><div class="fw-bold text-white">Kadapa Admin</div><div class="small opacity-50 text-white">Command Center</div></div>
     </div>
   </div>
@@ -158,7 +158,7 @@ if (!sessionStorage.getItem('kdp_admin')) {
       <div class="stat-widget">
         <div class="table-responsive">
           <table class="table table-hover align-middle">
-            <thead><tr><th>ID</th><th>Name</th><th>Department</th><th>Mandal</th><th>Subject</th><th>Status</th><th>Action</th></tr></thead>
+            <thead><tr><th>ID</th><th>Name</th><th>Phone</th><th>Department</th><th>Subject</th><th>Status</th><th>Action</th></tr></thead>
             <tbody id="allComplaintsTable"><tr><td colspan="7" class="text-center text-muted py-4">No complaints found.</td></tr></tbody>
           </table>
         </div>
@@ -200,6 +200,24 @@ if (!sessionStorage.getItem('kdp_admin')) {
       </div>
     </div>
 
+  </div>
+</div>
+
+<!-- Complaint Details Modal -->
+<div class="modal fade" id="complaintModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
+      <div class="modal-header bg-light border-0 px-4 py-3">
+        <h5 class="modal-title fw-bold">Grievance Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body px-4 py-0" id="complaintModalBody">
+        <!-- Loaded dynamically -->
+      </div>
+      <div class="modal-footer border-top px-4 py-3 bg-light">
+        <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -258,6 +276,7 @@ async function loadDashboard() {
       <td>${c.mandal}</td>
       <td><span class="badge badge-${c.status === 'Registered' ? 'registered' : c.status === 'In Progress' ? 'inprogress' : 'resolved'}">${c.status}</span></td>
       <td class="small">${formatDate(c.createdAt)}</td>
+      <td><button class="btn btn-sm btn-light border-0 rounded-circle" onclick="viewComplaint('${c.id}')"><i class="bi bi-eye"></i></button></td>
     </tr>`).join('');
   }
 
@@ -287,18 +306,57 @@ async function loadComplaints() {
   tbody.innerHTML = all.map(c => `<tr>
     <td><code class="small">${c.id}</code></td>
     <td>${c.name || '—'}</td>
+    <td>${c.phone || '—'}</td>
     <td>${c.department}</td>
-    <td>${c.mandal}</td>
-    <td class="small" style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${c.subject}">${c.subject}</td>
+    <td class="small" title="${c.subject}">${c.subject.slice(0, 20)}...</td>
     <td><span class="badge badge-${c.status === 'Registered' ? 'registered' : c.status === 'In Progress' ? 'inprogress' : 'resolved'}">${c.status}</span></td>
-    <td>
+    <td class="d-flex gap-2">
       <select class="status-select form-select form-select-sm" style="width:130px" onchange="changeStatus('${c.id}',this.value)">
         <option ${c.status==='Registered'?'selected':''}>Registered</option>
         <option ${c.status==='In Progress'?'selected':''}>In Progress</option>
         <option ${c.status==='Resolved'?'selected':''}>Resolved</option>
       </select>
+      <button class="btn btn-sm btn-primary rounded-pill px-3" onclick="viewComplaint('${c.id}')">Open</button>
     </td>
   </tr>`).join('');
+}
+
+async function viewComplaint(id) {
+    const c = await getComplaintById(id);
+    if (!c) return;
+    const body = document.getElementById('complaintModalBody');
+    body.innerHTML = `
+        <div class="py-4">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <p class="text-muted small mb-1">COMPLAINANT NAME</p>
+                    <p class="fw-bold fs-5 mb-3">${c.name || 'Anonymous'}</p>
+                    <p class="text-muted small mb-1">PHONE NUMBER</p>
+                    <p class="fw-bold mb-3">${c.phone || 'Not provided'}</p>
+                    <p class="text-muted small mb-1">MANDAL</p>
+                    <p class="fw-bold mb-3">${c.mandal || 'General'}</p>
+                </div>
+                <div class="col-md-6 border-start ps-md-4">
+                    <p class="text-muted small mb-1">COMPLAINT ID</p>
+                    <p class="fw-bold border px-2 py-1 bg-light d-inline-block rounded mb-3">${c.id}</p>
+                    <p class="text-muted small mb-1">DEPARTMENT</p>
+                    <p class="fw-bold mb-3 text-primary">${c.department}</p>
+                    <p class="text-muted small mb-1">SUBMISSION DATE</p>
+                    <p class="fw-bold mb-3">${formatDate(c.createdAt)}</p>
+                </div>
+                <div class="col-12 border-top pt-4">
+                    <p class="text-muted small mb-1">SUBJECT</p>
+                    <p class="fw-bold fs-5 mb-4">${c.subject}</p>
+                    <p class="text-muted small mb-2">DESCRIPTION</p>
+                    <div class="bg-light p-4 rounded-4" style="line-height:1.7; font-size: 1.1rem; color: #444;">
+                        ${c.description || c.desc}
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    const modal = new bootstrap.Modal(document.getElementById('complaintModal'));
+    modal.show();
 }
 
 async function changeStatus(id, status) {
