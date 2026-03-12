@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Citizen Grievance Portal | Kadapa Smart District</title>
+<meta name="description" content="Submit your complaint or grievance to Kadapa district government departments. Get a unique complaint ID and track status in real time.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.complaint-hero{background:linear-gradient(135deg,#0c1c44 0%,#1a3371 100%);padding:5rem 0 3rem;color:white;}
+.step-indicator{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:2.5rem}
+.step{display:flex;flex-direction:column;align-items:center;gap:0.5rem;position:relative;flex:1;max-width:140px}
+.step-number{width:44px;height:44px;border-radius:50%;border:2px solid #dee2e6;background:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;color:#adb5bd;transition:all 0.3s ease;position:relative;z-index:1}
+.step-label{font-size:0.72rem;font-weight:600;text-align:center;color:#adb5bd;text-transform:uppercase;letter-spacing:0.5px}
+.step.active .step-number{background:var(--accent-color);border-color:var(--accent-color);color:white;box-shadow:0 0 0 4px rgba(245,130,32,0.2)}
+.step.active .step-label{color:var(--accent-color)}
+.step.done .step-number{background:#28a745;border-color:#28a745;color:white}
+.step.done .step-label{color:#28a745}
+.step-connector{flex:1;height:2px;background:#dee2e6;margin-bottom:1.5rem;max-width:80px}
+.step-connector.done{background:#28a745}
+.form-panel{display:none;animation:fadeInUp 0.4s ease}
+.form-panel.active{display:block}
+.img-preview-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px;margin-top:12px}
+.img-preview-item{width:100%;height:90px;object-fit:cover;border-radius:10px;border:2px solid #dee2e6}
+.success-box{display:none;background:white;border-radius:20px;padding:2.5rem;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.1)}
+.success-box.visible{display:block;}
+.complaint-id-badge{background:linear-gradient(135deg,#0c1c44,#1a3371);color:white;border-radius:15px;padding:1rem 2rem;font-size:1.5rem;font-weight:800;letter-spacing:2px;display:inline-block;margin:1rem 0}
+</style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar py-2">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="gov-links small">
+                <a href="#" class="me-3">Government of Andhra Pradesh</a>
+                <a href="#">Official Portal</a>
+            </div>
+            <div class="utility-links d-flex align-items-center">
+                <div class="language-switch me-3">
+                    <button class="btn btn-sm btn-outline-light lang-btn active" data-lang="en">English</button>
+                    <button class="btn btn-sm btn-outline-light lang-btn" data-lang="te">తెలుగు</button>
+                </div>
+                <div class="accessibility-tools">
+                    <button id="btn-font-dec" class="btn btn-sm text-white" title="Decrease font size">A-</button>
+                    <button id="btn-font-reset" class="btn btn-sm text-white" title="Reset font size">A</button>
+                    <button id="btn-font-inc" class="btn btn-sm text-white" title="Increase font size">A+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Emblem_of_Andhra_Pradesh.svg" alt="GoAP Logo" height="50" class="me-3">
+                <div class="brand-text">
+                    <span class="d-block fw-bold h5 mb-0">KADAPA</span>
+                    <span class="small opacity-75 text-uppercase ls-1">Smart District Portal</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="about.html">District Overview</a></li>
+                            <li><a class="dropdown-item" href="about.html#history">History</a></li>
+                            <li><a class="dropdown-item" href="about.html#culture">Culture</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="mandals.html">Mandals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="departments.html">Departments</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tourism.html">Tourism</a></li>
+                    <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold text-accent" href="complaint.html">Grievance</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<!-- Hero -->
+<div class="complaint-hero">
+  <div class="container text-center">
+    <h1 class="fw-bold display-5 mb-3">Citizen Grievance Portal</h1>
+    <p class="lead opacity-75 mb-0">Submit your complaint to the right department and get it resolved.</p>
+  </div>
+</div>
+
+<!-- Form Section -->
+<section class="py-5 bg-light">
+  <div class="container" style="max-width:780px">
+
+    <!-- Step Indicator -->
+    <div class="step-indicator" id="stepIndicator">
+      <div class="step active" id="s1">
+        <div class="step-number">1</div>
+        <div class="step-label">Department</div>
+      </div>
+      <div class="step-connector" id="c1"></div>
+      <div class="step" id="s2">
+        <div class="step-number">2</div>
+        <div class="step-label">Personal Info</div>
+      </div>
+      <div class="step-connector" id="c2"></div>
+      <div class="step" id="s3">
+        <div class="step-number">3</div>
+        <div class="step-label">Location</div>
+      </div>
+      <div class="step-connector" id="c3"></div>
+      <div class="step" id="s4">
+        <div class="step-number">4</div>
+        <div class="step-label">Details</div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-4 shadow-sm p-4 p-md-5" id="formWrapper">
+
+      <!-- Step 1: Department -->
+      <div class="form-panel active" id="panel1">
+        <h4 class="fw-bold mb-4">Select Department</h4>
+        <div class="row g-3" id="deptGrid"></div>
+        <div class="mt-4 d-flex justify-content-end">
+          <button class="btn btn-accent px-5 rounded-pill" onclick="goToStep(2)">Next <i class="bi bi-arrow-right ms-1"></i></button>
+        </div>
+      </div>
+
+      <!-- Step 2: Personal Info -->
+      <div class="form-panel" id="panel2">
+        <h4 class="fw-bold mb-4">Your Details</h4>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Full Name <span class="text-danger">*</span></label>
+            <input type="text" id="c-name" class="form-control form-control-lg" placeholder="Enter your full name">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Mobile Number <span class="text-danger">*</span></label>
+            <input type="tel" id="c-phone" class="form-control form-control-lg" placeholder="10-digit mobile number">
+          </div>
+          <div class="col-12">
+            <label class="form-label fw-semibold">Email Address</label>
+            <input type="email" id="c-email" class="form-control form-control-lg" placeholder="Optional">
+          </div>
+          <div class="col-12">
+            <label class="form-label fw-semibold">Aadhar Number (last 4 digits)</label>
+            <input type="text" id="c-aadhar" class="form-control form-control-lg" maxlength="4" placeholder="XXXX">
+          </div>
+        </div>
+        <div class="mt-4 d-flex justify-content-between">
+          <button class="btn btn-outline-secondary rounded-pill px-4" onclick="goToStep(1)"><i class="bi bi-arrow-left me-1"></i> Back</button>
+          <button class="btn btn-accent px-5 rounded-pill" onclick="goToStep(3)">Next <i class="bi bi-arrow-right ms-1"></i></button>
+        </div>
+      </div>
+
+      <!-- Step 3: Location -->
+      <div class="form-panel" id="panel3">
+        <h4 class="fw-bold mb-4">Location Details</h4>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Mandal <span class="text-danger">*</span></label>
+            <select id="c-mandal" class="form-select form-select-lg">
+              <option value="">-- Select Mandal --</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Municipality / Village</label>
+            <input type="text" id="c-village" class="form-control form-control-lg" placeholder="Enter village or ward">
+          </div>
+          <div class="col-12">
+            <label class="form-label fw-semibold">Pincode</label>
+            <input type="text" id="c-pin" class="form-control form-control-lg" maxlength="6" placeholder="516001">
+          </div>
+        </div>
+        <div class="mt-4 d-flex justify-content-between">
+          <button class="btn btn-outline-secondary rounded-pill px-4" onclick="goToStep(2)"><i class="bi bi-arrow-left me-1"></i> Back</button>
+          <button class="btn btn-accent px-5 rounded-pill" onclick="goToStep(4)">Next <i class="bi bi-arrow-right ms-1"></i></button>
+        </div>
+      </div>
+
+      <!-- Step 4: Complaint Details -->
+      <div class="form-panel" id="panel4">
+        <h4 class="fw-bold mb-4">Complaint Details</h4>
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Subject <span class="text-danger">*</span></label>
+          <input type="text" id="c-subject" class="form-control form-control-lg" placeholder="Brief subject of your complaint">
+        </div>
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Description <span class="text-danger">*</span></label>
+          <textarea id="c-desc" class="form-control" rows="5" placeholder="Describe the issue in detail..."></textarea>
+        </div>
+        <div class="mb-4">
+          <label class="form-label fw-semibold">Upload Photos (Optional)</label>
+          <div class="border-2 border-dashed rounded-3 p-4 text-center" style="border:2px dashed #dee2e6;cursor:pointer" onclick="document.getElementById('c-photos').click()">
+            <i class="bi bi-cloud-arrow-up display-4 text-muted d-block mb-2"></i>
+            <p class="text-muted mb-0">Click to upload photos or drag and drop here</p>
+            <small class="text-muted">JPG, PNG up to 5MB each</small>
+          </div>
+          <input type="file" id="c-photos" multiple accept="image/*" class="d-none" onchange="previewImages(this)">
+          <div class="img-preview-grid" id="photoPreview"></div>
+        </div>
+        <div class="mt-4 d-flex justify-content-between">
+          <button class="btn btn-outline-secondary rounded-pill px-4" onclick="goToStep(3)"><i class="bi bi-arrow-left me-1"></i> Back</button>
+          <button class="btn btn-accent btn-lg px-5 rounded-pill" onclick="submitComplaint()">
+            <i class="bi bi-send me-2"></i>Submit Complaint
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Success Box -->
+    <div class="success-box mt-4" id="successBox">
+      <div class="mb-3"><i class="bi bi-check-circle-fill text-success" style="font-size:4rem"></i></div>
+      <h3 class="fw-bold mb-2">Complaint Submitted Successfully!</h3>
+      <p class="text-muted mb-4">Your complaint has been registered. Use the ID below to track status.</p>
+      <div class="complaint-id-badge" id="complaintIdDisplay">KDP-000000-000</div>
+      <p class="small text-muted mt-3">Save this ID. You'll need it to track your complaint.</p>
+      <div class="d-flex gap-3 justify-content-center mt-4">
+        <a href="track.html" class="btn btn-accent rounded-pill px-4">Track Complaint</a>
+        <button class="btn btn-outline-primary rounded-pill px-4" onclick="window.print()">Print</button>
+        <button class="btn btn-outline-secondary rounded-pill px-4" onclick="newComplaint()">New Complaint</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+    <!-- Footer -->
+    <footer class="footer pt-5 pb-3">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <h4 class="fw-bold mb-4">Kadapa Smart District</h4>
+                    <p class="opacity-75">An initiative by the District Administration of Kadapa to bring governance closer to people through technology and transparency.</p>
+                    <div class="social-links mt-4">
+                        <a href="#" class="me-3 text-white"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="me-3 text-white"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" class="me-3 text-white"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="fw-bold mb-4">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="about.html" class="text-white opacity-75 text-decoration-none">About District</a></li>
+                        <li class="mb-2"><a href="mandals.html" class="text-white opacity-75 text-decoration-none">Mandals</a></li>
+                        <li class="mb-2"><a href="departments.html" class="text-white opacity-75 text-decoration-none">Departments</a></li>
+                        <li class="mb-2"><a href="complaint.html" class="text-white opacity-75 text-decoration-none">Grievance Portal</a></li>
+                        <li class="mb-2"><a href="tourism.html" class="text-white opacity-75 text-decoration-none">Tourism</a></li>
+                        <li class="mb-2"><a href="news.html" class="text-white opacity-75 text-decoration-none">News</a></li>
+                        <li class="mb-2"><a href="contact.html" class="text-white opacity-75 text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="fw-bold mb-4">Contact Info</h5>
+                    <ul class="list-unstyled text-white opacity-75">
+                        <li class="mb-3 d-flex align-items-start">
+                            <i class="bi bi-geo-alt me-2 mt-1"></i>
+                            <span>Collectorate Office, <br>YSR Kadapa District, AP - 516001</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-telephone me-2"></i>
+                            <span>08562 - 244400</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="fw-bold mb-4">Newsletter</h5>
+                    <p class="small opacity-75">Get latest updates from the district administration.</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Email Address">
+                        <button class="btn btn-accent">Join</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-5 opacity-25">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small mb-0 opacity-50">&copy; 2026 District Administration, Kadapa. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="small mb-0 opacity-50">Designed & Developed by Antigravity AI</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+let selectedDept = '';
+let currentStep = 1;
+
+const departmentsData = [
+  { id: 'revenue', name: 'Revenue', icon: 'bi-briefcase', color: '#4361ee' },
+  { id: 'municipal', name: 'Municipal', icon: 'bi-buildings', color: '#7209b7' },
+  { id: 'electricity', name: 'Electricity', icon: 'bi-lightning-charge', color: '#f7b731' },
+  { id: 'water', name: 'Water Supply', icon: 'bi-droplet', color: '#0096c7' },
+  { id: 'police', name: 'Police', icon: 'bi-shield-check', color: '#1d3461' },
+  { id: 'health', name: 'Health', icon: 'bi-heart-pulse', color: '#d90429' },
+  { id: 'education', name: 'Education', icon: 'bi-book', color: '#26a96c' }
+];
+
+const mandalsList = ["Badvel","B.Kodur","Chakrayapet","Chapad","Chitvel","Duvvur","Galiveedu","Gopavaram","Jammalamadugu","Kadapa","Kamalapuram","Khajipet","Lakkireddipalle","Lingala","Mydukur","Muddanur","Nandalur","Pendlimarri","Proddutur","Pulivendla","Rajampet","Rayachoti","Sambepalle","Simhadripuram","Sidhout","Vallur","Vempalle","Vontimitta","Yerraguntla"];
+
+window.addEventListener('DOMContentLoaded', () => {
+  // Populate dept grid
+  const grid = document.getElementById('deptGrid');
+  departmentsData.forEach(d => {
+    grid.innerHTML += `
+      <div class="col-4 col-md-3">
+        <div class="dept-btn text-center p-3 rounded-3 border cursor-pointer" data-id="${d.id}" onclick="selectDept('${d.id}','${d.name}')" style="cursor:pointer;transition:all 0.2s">
+          <i class="bi ${d.icon} fs-2 d-block mb-2" style="color:${d.color}"></i>
+          <small class="fw-semibold">${d.name}</small>
+        </div>
+      </div>`;
+  });
+
+  // Populate mandals
+  const sel = document.getElementById('c-mandal');
+  mandalsList.forEach(m => {
+    const opt = document.createElement('option');
+    opt.value = m; opt.textContent = m;
+    sel.appendChild(opt);
+  });
+});
+
+function selectDept(id, name) {
+  selectedDept = name;
+  document.querySelectorAll('.dept-btn').forEach(b => {
+    b.style.background = b.dataset.id === id ? '#0c1c44' : '';
+    b.style.color = b.dataset.id === id ? 'white' : '';
+    b.style.borderColor = b.dataset.id === id ? '#0c1c44' : '';
+    if (b.dataset.id === id) b.querySelector('i').style.color = 'white';
+    else b.querySelector('i').style.color = '';
+  });
+}
+
+function goToStep(n) {
+  if (n > currentStep) {
+    if (n === 2 && !selectedDept) { alert('Please select a department.'); return; }
+    if (n === 3) {
+      if (!document.getElementById('c-name').value.trim()) { alert('Name is required.'); return; }
+      if (!/^[6-9]\d{9}$/.test(document.getElementById('c-phone').value.trim())) { alert('Enter a valid 10-digit mobile number.'); return; }
+    }
+    if (n === 5) {
+      if (!document.getElementById('c-mandal').value) { alert('Please select a mandal.'); return; }
+    }
+  }
+  document.getElementById('panel' + currentStep).classList.remove('active');
+  document.getElementById('s' + currentStep).classList.remove('active');
+  document.getElementById('s' + currentStep).classList.add('done');
+  if (currentStep > 1) document.getElementById('c' + (currentStep-1))?.classList.add('done');
+  currentStep = n;
+  document.getElementById('panel' + currentStep).classList.add('active');
+  document.getElementById('s' + currentStep).classList.add('active');
+  document.getElementById('s' + currentStep).classList.remove('done');
+  if (n > 1) document.getElementById('c' + (n-1))?.classList.add('done');
+}
+
+function previewImages(input) {
+  const preview = document.getElementById('photoPreview');
+  preview.innerHTML = '';
+  Array.from(input.files).slice(0, 6).forEach(file => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = document.createElement('img');
+      img.src = e.target.result;
+      img.classList.add('img-preview-item');
+      preview.appendChild(img);
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+async function submitComplaint() {
+  const user = getLoggedInUser();
+  if (!user) {
+    alert('Session expired. Please login again.');
+    window.location.href = 'login.html';
+    return;
+  }
+  const mandal = document.getElementById('c-mandal').value;
+  if (!subject) { alert('Please enter a subject.'); return; }
+  if (!desc || desc.length < 20) { alert('Please write a detailed description (min 20 chars).'); return; }
+  if (!mandal) { alert('Please select a mandal.'); return; }
+
+  const submitBtn = document.querySelector('button[onclick="submitComplaint()"]');
+  const originalHtml = submitBtn.innerHTML;
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Submitting...';
+
+  const id = generateComplaintId();
+  const data = {
+    id, department: selectedDept,
+    name: document.getElementById('c-name').value.trim(),
+    phone: document.getElementById('c-phone').value.trim(),
+    email: document.getElementById('c-email').value.trim(),
+    mandal, village: document.getElementById('c-village').value.trim(),
+    pin: document.getElementById('c-pin').value.trim(),
+    subject, desc, status: 'Registered',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  };
+  
+  const result = await saveComplaint(data);
+
+  if (result.success) {
+    document.getElementById('formWrapper').style.display = 'none';
+    document.getElementById('complaintIdDisplay').textContent = result.id || id;
+    document.getElementById('successBox').classList.add('visible');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    alert('Error submitting complaint: ' + (result.message || 'Unknown error'));
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = originalHtml;
+  }
+}
+
+function newComplaint() {
+  location.reload();
+}
+</script>
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    checkAuth();
+    const user = getLoggedInUser();
+    if(user && document.getElementById('c-name')) {
+        document.getElementById('c-name').value = user.name;
+        document.getElementById('c-phone').value = user.phone;
+        document.getElementById('c-name').disabled = true;
+        document.getElementById('c-phone').disabled = true;
+    }
+});
+</script>
+</html>

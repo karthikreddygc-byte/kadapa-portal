@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mandals & Municipalities | Kadapa Smart District Portal</title>
+<meta name="description" content="Complete list of mandals and municipalities in Kadapa (YSR) District, Andhra Pradesh. Find your mandal headquarters and local body information.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.page-hero{background:linear-gradient(135deg,#0c1c44,#1a3371);color:white;padding:5rem 0 3rem}
+.mandal-card{background:white;border:1px solid #e0e0e0;border-radius:16px;padding:1.25rem;transition:all .25s;cursor:pointer;border-left:5px solid var(--accent-color)}
+.mandal-card:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(0,0,0,.08);background:var(--primary-color);color:white}
+.mandal-card:hover .text-muted{color:#ccc!important}
+.revenue-box{background:linear-gradient(135deg,#16213e,#0f3460);color:white;border-radius:16px;padding:2rem}
+.mun-badge{border-radius:10px;padding:.65rem 1rem;font-weight:600}
+input#mandalSearch:focus{border-color:var(--accent-color);box-shadow:0 0 0 .2rem rgba(245,130,32,.2)}
+</style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar py-2">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="gov-links small">
+                <a href="#" class="me-3">Government of Andhra Pradesh</a>
+                <a href="#">Official Portal</a>
+            </div>
+            <div class="utility-links d-flex align-items-center">
+                <div class="language-switch me-3">
+                    <button class="btn btn-sm btn-outline-light lang-btn active" data-lang="en">English</button>
+                    <button class="btn btn-sm btn-outline-light lang-btn" data-lang="te">తెలుగు</button>
+                </div>
+                <div class="accessibility-tools">
+                    <button id="btn-font-dec" class="btn btn-sm text-white" title="Decrease font size">A-</button>
+                    <button id="btn-font-reset" class="btn btn-sm text-white" title="Reset font size">A</button>
+                    <button id="btn-font-inc" class="btn btn-sm text-white" title="Increase font size">A+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Emblem_of_Andhra_Pradesh.svg" alt="GoAP Logo" height="50" class="me-3">
+                <div class="brand-text">
+                    <span class="d-block fw-bold h5 mb-0">KADAPA</span>
+                    <span class="small opacity-75 text-uppercase ls-1">Smart District Portal</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="about.html">District Overview</a></li>
+                            <li><a class="dropdown-item" href="about.html#history">History</a></li>
+                            <li><a class="dropdown-item" href="about.html#culture">Culture</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link active" href="mandals.html">Mandals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="departments.html">Departments</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tourism.html">Tourism</a></li>
+                    <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold text-accent" href="complaint.html">Grievance</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<div class="page-hero">
+  <div class="container">
+    <nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="index.html" class="text-white opacity-75">Home</a></li><li class="breadcrumb-item active text-white">Mandals</li></ol></nav>
+    <h1 class="fw-bold display-5 mb-2">Mandals & Municipalities</h1>
+    <p class="lead opacity-75">Kadapa district is divided into <strong>51 Mandals</strong> across 3 Revenue Divisions.</p>
+  </div>
+</div>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row g-4 mb-5">
+      <div class="col-md-4"><div class="revenue-box"><h5 class="fw-bold mb-1">Kadapa Revenue Division</h5><p class="opacity-75 small mb-2">Kadapa, Rajampet, Jammalamadugu sub-divisions</p><div class="badge bg-warning text-dark">20 Mandals</div></div></div>
+      <div class="col-md-4"><div class="revenue-box"><h5 class="fw-bold mb-1">Pulivendla Revenue Division</h5><p class="opacity-75 small mb-2">Pulivendla, Vempalle sub-divisions</p><div class="badge bg-warning text-dark">17 Mandals</div></div></div>
+      <div class="col-md-4"><div class="revenue-box"><h5 class="fw-bold mb-1">Proddutur Revenue Division</h5><p class="opacity-75 small mb-2">Proddutur, Badvel sub-divisions</p><div class="badge bg-warning text-dark">14 Mandals</div></div></div>
+    </div>
+
+    <div class="mb-4">
+      <input type="text" id="mandalSearch" class="form-control form-control-lg" placeholder="🔍  Search Mandal...">
+    </div>
+
+    <div class="row g-3" id="mandalGrid"></div>
+  </div>
+</section>
+
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="fw-bold mb-4">Municipalities & Urban Local Bodies</h2>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3">
+        <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+          <span class="badge bg-primary mb-3" style="width:fit-content">Municipal Corporation</span>
+          <h5 class="fw-bold">Kadapa Municipal Corporation</h5>
+          <p class="small text-muted">Serves ~400,000 population. The only municipal corporation in the district.</p>
+          <div class="mt-auto"><i class="bi bi-people text-primary me-1"></i><small class="text-muted">~4 Lakh Population</small></div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+          <span class="badge bg-success mb-3" style="width:fit-content">Municipality</span>
+          <h5 class="fw-bold">Proddatur Municipality</h5>
+          <p class="small text-muted">Second largest urban area in the district with active industrial zone.</p>
+          <div class="mt-auto"><i class="bi bi-people text-success me-1"></i><small class="text-muted">~2.5 Lakh Population</small></div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+          <span class="badge bg-success mb-3" style="width:fit-content">Municipality</span>
+          <h5 class="fw-bold">Jammalamadugu Municipality</h5>
+          <p class="small text-muted">Commercial and agricultural hub of the Jammalamadugu sub-division.</p>
+          <div class="mt-auto"><i class="bi bi-people text-success me-1"></i><small class="text-muted">~60,000 Population</small></div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+          <span class="badge bg-info text-dark mb-3" style="width:fit-content">Town Panchayats</span>
+          <h5 class="fw-bold">8 Town Panchayats</h5>
+          <p class="small text-muted">Pulivendla, Badvel, Rajampet, Rayachoti, Mydukur, Kamalapuram, Khajipet & Vempalle.</p>
+          <div class="mt-auto"><i class="bi bi-building text-info me-1"></i><small class="text-muted">Town-level governance</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- Footer -->
+    <footer class="footer pt-5 pb-3">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <h4 class="fw-bold mb-4">Kadapa Smart District</h4>
+                    <p class="opacity-75">An initiative by the District Administration of Kadapa to bring governance closer to people through technology and transparency.</p>
+                    <div class="social-links mt-4">
+                        <a href="#" class="me-3 text-white"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="me-3 text-white"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" class="me-3 text-white"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="fw-bold mb-4">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="about.html" class="text-white opacity-75 text-decoration-none">About District</a></li>
+                        <li class="mb-2"><a href="mandals.html" class="text-white opacity-75 text-decoration-none">Mandals</a></li>
+                        <li class="mb-2"><a href="departments.html" class="text-white opacity-75 text-decoration-none">Departments</a></li>
+                        <li class="mb-2"><a href="complaint.html" class="text-white opacity-75 text-decoration-none">Grievance Portal</a></li>
+                        <li class="mb-2"><a href="tourism.html" class="text-white opacity-75 text-decoration-none">Tourism</a></li>
+                        <li class="mb-2"><a href="news.html" class="text-white opacity-75 text-decoration-none">News</a></li>
+                        <li class="mb-2"><a href="contact.html" class="text-white opacity-75 text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="fw-bold mb-4">Contact Info</h5>
+                    <ul class="list-unstyled text-white opacity-75">
+                        <li class="mb-3 d-flex align-items-start">
+                            <i class="bi bi-geo-alt me-2 mt-1"></i>
+                            <span>Collectorate Office, <br>YSR Kadapa District, AP - 516001</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-telephone me-2"></i>
+                            <span>08562 - 244400</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="fw-bold mb-4">Newsletter</h5>
+                    <p class="small opacity-75">Get latest updates from the district administration.</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Email Address">
+                        <button class="btn btn-accent">Join</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-5 opacity-25">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small mb-0 opacity-50">&copy; 2026 District Administration, Kadapa. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="small mb-0 opacity-50">Designed & Developed by Antigravity AI</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+const allMandals = [
+  "Badvel","B.Kodur","Chakrayapet","Chapad","Chitvel","Duvvur","Galiveedu","Gopavaram",
+  "Jammalamadugu","Kadapa (Urban)","Kadapa (Rural)","Kamalapuram","Khajipet","Lakkireddipalle",
+  "Lingala","Mydukur","Muddanur","Nandalur","Pendlimarri","Proddatur","Pulivendla","Rajampet",
+  "Rayachoti","Sambepalle","Simhadripuram","Sidhout","Vallur","Vempalle","Vontimitta","Yerraguntla",
+  "Kalasapadu","Kodur","Pullampet","Bramhamgarimatham","Chavaluru","Rajupalem","Siddavatam",
+  "Obulavaripalle","Thondur","C.K.Dinne","T.Sundupalle","Thamminapatnam","Penagalur","Nossam",
+  "Veerapunayunipalle","Muddanur","Rajampet (Rural)","Atlur","Porumamilla","Kondapuram","B.Mattam"
+];
+
+function renderMandals(filter = '') {
+  const grid = document.getElementById('mandalGrid');
+  const filtered = allMandals.filter(m => m.toLowerCase().includes(filter.toLowerCase()));
+  grid.innerHTML = '';
+  filtered.forEach(m => {
+    grid.innerHTML += `
+      <div class="col-md-4 col-lg-3">
+        <div class="mandal-card">
+          <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-geo-alt-fill text-accent"></i>
+            <h6 class="fw-bold mb-0">${m}</h6>
+          </div>
+          <p class="small text-muted mb-1 mt-2">Kadapa District</p>
+          <a href="complaint.html" class="small text-primary text-decoration-none">File Complaint →</a>
+        </div>
+      </div>`;
+  });
+  if (!filtered.length) grid.innerHTML = '<div class="col-12 text-center text-muted py-5">No mandals found.</div>';
+}
+
+document.getElementById('mandalSearch').addEventListener('input', e => renderMandals(e.target.value));
+renderMandals();
+</script>
+</body>
+</html>

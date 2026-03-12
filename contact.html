@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | Kadapa Smart District Portal</title>
+<meta name="description" content="Contact Kadapa District Collectorate. Address, phone numbers and feedback form for all district administration queries.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.page-hero{background:linear-gradient(135deg,#0c1c44,#1a3371);color:white;padding:5rem 0 3rem}
+.contact-info-card{background:white;border-radius:20px;padding:2rem;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.icon-circle{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.map-placeholder{background:linear-gradient(135deg,#e0e8ff,#c4d4ff);border-radius:20px;height:350px;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#1a3371}
+</style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar py-2">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="gov-links small">
+                <a href="#" class="me-3">Government of Andhra Pradesh</a>
+                <a href="#">Official Portal</a>
+            </div>
+            <div class="utility-links d-flex align-items-center">
+                <div class="language-switch me-3">
+                    <button class="btn btn-sm btn-outline-light lang-btn active" data-lang="en">English</button>
+                    <button class="btn btn-sm btn-outline-light lang-btn" data-lang="te">తెలుగు</button>
+                </div>
+                <div class="accessibility-tools">
+                    <button id="btn-font-dec" class="btn btn-sm text-white" title="Decrease font size">A-</button>
+                    <button id="btn-font-reset" class="btn btn-sm text-white" title="Reset font size">A</button>
+                    <button id="btn-font-inc" class="btn btn-sm text-white" title="Increase font size">A+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Emblem_of_Andhra_Pradesh.svg" alt="GoAP Logo" height="50" class="me-3">
+                <div class="brand-text">
+                    <span class="d-block fw-bold h5 mb-0">KADAPA</span>
+                    <span class="small opacity-75 text-uppercase ls-1">Smart District Portal</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="about.html">District Overview</a></li>
+                            <li><a class="dropdown-item" href="about.html#history">History</a></li>
+                            <li><a class="dropdown-item" href="about.html#culture">Culture</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="mandals.html">Mandals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="departments.html">Departments</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tourism.html">Tourism</a></li>
+                    <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold text-accent" href="complaint.html">Grievance</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<div class="page-hero">
+  <div class="container">
+    <nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="index.html" class="text-white opacity-75">Home</a></li><li class="breadcrumb-item active text-white">Contact</li></ol></nav>
+    <h1 class="fw-bold display-5 mb-2">Contact Us</h1>
+    <p class="lead opacity-75">Get in touch with the District Administration of Kadapa.</p>
+  </div>
+</div>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-5">
+        <h3 class="fw-bold mb-4">Collectorate Office</h3>
+        <div class="contact-info-card mb-4">
+          <div class="d-flex align-items-start gap-3 mb-4">
+            <div class="icon-circle bg-primary bg-opacity-10 text-primary"><i class="bi bi-geo-alt-fill"></i></div>
+            <div><h6 class="fw-bold mb-1">Address</h6><p class="text-muted mb-0">District Collector Office, Collectorate Road,<br>YSR Kadapa District, Andhra Pradesh – 516001</p></div>
+          </div>
+          <div class="d-flex align-items-start gap-3 mb-4">
+            <div class="icon-circle bg-success bg-opacity-10 text-success"><i class="bi bi-telephone-fill"></i></div>
+            <div><h6 class="fw-bold mb-1">Phone</h6><p class="text-muted mb-0">08562-244400 (Collector Office)<br>08562-222555 (Municipal)</p></div>
+          </div>
+          <div class="d-flex align-items-start gap-3 mb-4">
+            <div class="icon-circle bg-warning bg-opacity-10 text-warning"><i class="bi bi-envelope-fill"></i></div>
+            <div><h6 class="fw-bold mb-1">Email</h6><p class="text-muted mb-0">collector_kpdy@ap.gov.in<br>dmho_kpdy@ap.gov.in</p></div>
+          </div>
+          <div class="d-flex align-items-start gap-3">
+            <div class="icon-circle bg-info bg-opacity-10 text-info"><i class="bi bi-clock-fill"></i></div>
+            <div><h6 class="fw-bold mb-1">Office Hours</h6><p class="text-muted mb-0">Monday – Saturday: 10:30 AM – 5:00 PM<br>Sunday & Holidays: Closed</p></div>
+          </div>
+        </div>
+
+        <div class="rounded-4 overflow-hidden border shadow-sm" style="height:350px">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15448.97116569147!2d78.81845634567262!3d14.470555307223793!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb372078693cc51%3A0xe67c067a5b306354!2sCollector%20office%20Kadapa!5e0!3m2!1sen!2sin!4v1710240000000!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <h3 class="fw-bold mb-4">Send Feedback</h3>
+        <div class="bg-white rounded-4 shadow-sm p-4 p-md-5">
+          <div id="feedbackFormWrap">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Full Name <span class="text-danger">*</span></label>
+                <input type="text" id="fb-name" class="form-control form-control-lg" placeholder="Your name">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Mobile Number</label>
+                <input type="tel" id="fb-phone" class="form-control form-control-lg" placeholder="10-digit number">
+              </div>
+              <div class="col-12">
+                <label class="form-label fw-semibold">Email <span class="text-danger">*</span></label>
+                <input type="email" id="fb-email" class="form-control form-control-lg" placeholder="your@email.com">
+              </div>
+              <div class="col-12">
+                <label class="form-label fw-semibold">Subject <span class="text-danger">*</span></label>
+                <select id="fb-subject" class="form-select form-select-lg">
+                  <option value="">-- Select Subject --</option>
+                  <option>Website Feedback</option>
+                  <option>Complaint regarding Portal</option>
+                  <option>Request for Information</option>
+                  <option>Suggestion for Improvement</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="form-label fw-semibold">Message <span class="text-danger">*</span></label>
+                <textarea id="fb-msg" class="form-control" rows="5" placeholder="Write your message here..."></textarea>
+              </div>
+              <div class="col-12">
+                <button class="btn btn-accent btn-lg w-100 rounded-pill" onclick="submitFeedback()"><i class="bi bi-send me-2"></i>Submit Feedback</button>
+              </div>
+            </div>
+          </div>
+          <div id="feedbackSuccess" class="text-center d-none py-4">
+            <i class="bi bi-check-circle-fill text-success" style="font-size:4rem"></i>
+            <h4 class="fw-bold mt-3">Thank you for your feedback!</h4>
+            <p class="text-muted">We have received your message and will respond within 2–3 working days.</p>
+            <button class="btn btn-outline-primary rounded-pill px-4" onclick="resetFeedback()">Send Another</button>
+          </div>
+        </div>
+
+        <div class="row g-3 mt-3">
+          <div class="col-md-4">
+            <div class="bg-primary text-white rounded-4 p-3 text-center">
+              <div class="fw-bold display-6">100</div>
+              <div class="small opacity-75">Police Emergency</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="bg-danger text-white rounded-4 p-3 text-center">
+              <div class="fw-bold display-6">108</div>
+              <div class="small opacity-75">Ambulance</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="bg-warning text-dark rounded-4 p-3 text-center">
+              <div class="fw-bold display-6">1912</div>
+              <div class="small opacity-75">Power Helpline</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- Footer -->
+    <footer class="footer pt-5 pb-3">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <h4 class="fw-bold mb-4">Kadapa Smart District</h4>
+                    <p class="opacity-75">An initiative by the District Administration of Kadapa to bring governance closer to people through technology and transparency.</p>
+                    <div class="social-links mt-4">
+                        <a href="#" class="me-3 text-white"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="me-3 text-white"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" class="me-3 text-white"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="fw-bold mb-4">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="about.html" class="text-white opacity-75 text-decoration-none">About District</a></li>
+                        <li class="mb-2"><a href="mandals.html" class="text-white opacity-75 text-decoration-none">Mandals</a></li>
+                        <li class="mb-2"><a href="departments.html" class="text-white opacity-75 text-decoration-none">Departments</a></li>
+                        <li class="mb-2"><a href="complaint.html" class="text-white opacity-75 text-decoration-none">Grievance Portal</a></li>
+                        <li class="mb-2"><a href="tourism.html" class="text-white opacity-75 text-decoration-none">Tourism</a></li>
+                        <li class="mb-2"><a href="news.html" class="text-white opacity-75 text-decoration-none">News</a></li>
+                        <li class="mb-2"><a href="contact.html" class="text-white opacity-75 text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="fw-bold mb-4">Contact Info</h5>
+                    <ul class="list-unstyled text-white opacity-75">
+                        <li class="mb-3 d-flex align-items-start">
+                            <i class="bi bi-geo-alt me-2 mt-1"></i>
+                            <span>Collectorate Office, <br>YSR Kadapa District, AP - 516001</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-telephone me-2"></i>
+                            <span>08562 - 244400</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="fw-bold mb-4">Newsletter</h5>
+                    <p class="small opacity-75">Get latest updates from the district administration.</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Email Address">
+                        <button class="btn btn-accent">Join</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-5 opacity-25">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small mb-0 opacity-50">&copy; 2026 District Administration, Kadapa. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="small mb-0 opacity-50">Designed & Developed by Antigravity AI</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function submitFeedback() {
+  const name = document.getElementById('fb-name').value.trim();
+  const email = document.getElementById('fb-email').value.trim();
+  const subject = document.getElementById('fb-subject').value;
+  const msg = document.getElementById('fb-msg').value.trim();
+  if (!name || !email || !subject || msg.length < 10) {
+    alert('Please fill all required fields with valid data.'); return;
+  }
+  document.getElementById('feedbackFormWrap').classList.add('d-none');
+  document.getElementById('feedbackSuccess').classList.remove('d-none');
+}
+function resetFeedback() {
+  document.getElementById('feedbackFormWrap').classList.remove('d-none');
+  document.getElementById('feedbackSuccess').classList.add('d-none');
+  document.querySelectorAll('input, textarea, select').forEach(el => el.value = '');
+}
+</script>
+</body>
+</html>

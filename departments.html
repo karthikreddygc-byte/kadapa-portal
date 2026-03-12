@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Government Departments | Kadapa Smart District Portal</title>
+<meta name="description" content="Directory of all government departments in Kadapa District - Revenue, Municipal, Electricity, Water, Police, Health and Education.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.page-hero{background:linear-gradient(135deg,#0c1c44,#1a3371);color:white;padding:5rem 0 3rem}
+.dept-hero-card{border-radius:20px;overflow:hidden;border:none;transition:all .3s;cursor:pointer}
+.dept-hero-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,0,0,.15)}
+.dept-hero-card .card-header{padding:2rem;text-align:center;color:white}
+.dept-hero-card .card-body{padding:1.5rem}
+.contact-row{background:#f8f9fa;border-radius:12px;padding:.75rem 1rem;margin-bottom:.5rem;display:flex;align-items:center;gap:.75rem}
+.complaint-btn{background:var(--accent-color);color:white;border:none;border-radius:30px;padding:.5rem 1.25rem;font-weight:600;transition:all .2s;text-decoration:none;font-size:.85rem}
+.complaint-btn:hover{background:var(--accent-hover);color:white;transform:scale(1.04)}
+</style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar py-2">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="gov-links small">
+                <a href="#" class="me-3">Government of Andhra Pradesh</a>
+                <a href="#">Official Portal</a>
+            </div>
+            <div class="utility-links d-flex align-items-center">
+                <div class="language-switch me-3">
+                    <button class="btn btn-sm btn-outline-light lang-btn active" data-lang="en">English</button>
+                    <button class="btn btn-sm btn-outline-light lang-btn" data-lang="te">తెలుగు</button>
+                </div>
+                <div class="accessibility-tools">
+                    <button id="btn-font-dec" class="btn btn-sm text-white" title="Decrease font size">A-</button>
+                    <button id="btn-font-reset" class="btn btn-sm text-white" title="Reset font size">A</button>
+                    <button id="btn-font-inc" class="btn btn-sm text-white" title="Increase font size">A+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Emblem_of_Andhra_Pradesh.svg" alt="GoAP Logo" height="50" class="me-3">
+                <div class="brand-text">
+                    <span class="d-block fw-bold h5 mb-0">KADAPA</span>
+                    <span class="small opacity-75 text-uppercase ls-1">Smart District Portal</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="about.html">District Overview</a></li>
+                            <li><a class="dropdown-item" href="about.html#history">History</a></li>
+                            <li><a class="dropdown-item" href="about.html#culture">Culture</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="mandals.html">Mandals</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="departments.html">Departments</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tourism.html">Tourism</a></li>
+                    <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold text-accent" href="complaint.html">Grievance</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<div class="page-hero">
+  <div class="container">
+    <nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="index.html" class="text-white opacity-75">Home</a></li><li class="breadcrumb-item active text-white">Departments</li></ol></nav>
+    <h1 class="fw-bold display-5 mb-2">Government Departments</h1>
+    <p class="lead opacity-75">Connect directly with the right department for all citizen services.</p>
+  </div>
+</div>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- Revenue -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card dept-hero-card h-100 shadow-sm">
+          <div class="card-header" style="background:linear-gradient(135deg,#4361ee,#3a0ca3)">
+            <i class="bi bi-briefcase display-4 d-block mb-2"></i>
+            <h4 class="fw-bold mb-0">Revenue Department</h4>
+          </div>
+          <div class="card-body">
+            <p class="text-muted small">Handles land records, property registration, mutation, Pattadar Passbooks, and disaster relief payments.</p>
+            <div class="contact-row"><i class="bi bi-person-badge text-primary"></i><div><div class="fw-semibold" style="font-size:.9rem">District Collector</div><div class="small text-muted">08562-244400</div></div></div>
+            <div class="contact-row"><i class="bi bi-telephone text-primary"></i><div><div class="fw-semibold" style="font-size:.9rem">Helpline</div><div class="small text-muted">1800-425-0082</div></div></div>
+            <div class="contact-row"><i class="bi bi-envelope text-primary"></i><div><div class="fw-semibold" style="font-size:.9rem">Email</div><div class="small text-muted">collector_kpdy@ap.gov.in</div></div></div>
+            <div class="mt-3"><a href="complaint.html?dept=Revenue" class="complaint-btn"><i class="bi bi-exclamation-circle me-1"></i>File Complaint</a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Municipal -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card dept-hero-card h-100 shadow-sm">
+          <div class="card-header" style="background:linear-gradient(135deg,#7209b7,#560bad)">
+            <i class="bi bi-buildings display-4 d-block mb-2"></i>
+            <h4 class="fw-bold mb-0">Municipal Department</h4>
+          </div>
+          <div class="card-body">
+            <p class="text-muted small">Manages urban infrastructure, drainage, street lighting, sanitation, building permissions, and property tax collection.</p>
+            <div class="contact-row"><i class="bi bi-person-badge text-purple" style="color:#7209b7"></i><div><div class="fw-semibold" style="font-size:.9rem">Commissioner, KMC</div><div class="small text-muted">08562-222555</div></div></div>
+            <div class="contact-row"><i class="bi bi-telephone" style="color:#7209b7"></i><div><div class="fw-semibold" style="font-size:.9rem">Helpline</div><div class="small text-muted">1800-599-4977</div></div></div>
+            <div class="contact-row"><i class="bi bi-globe" style="color:#7209b7"></i><div><div class="fw-semibold" style="font-size:.9rem">Portal</div><div class="small text-muted">cdma.ap.gov.in</div></div></div>
+            <div class="mt-3"><a href="complaint.html?dept=Municipal" class="complaint-btn"><i class="bi bi-exclamation-circle me-1"></i>File Complaint</a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Electricity -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card dept-hero-card h-100 shadow-sm">
+          <div class="card-header" style="background:linear-gradient(135deg,#f7b731,#e09100)">
+            <i class="bi bi-lightning-charge-fill display-4 d-block mb-2"></i>
+            <h4 class="fw-bold mb-0">Electricity Department</h4>
+          </div>
+          <div class="card-body">
+            <p class="text-muted small">Provides power supply management, billing services, new connection requests, transformer repairs and outage reporting.</p>
+            <div class="contact-row"><i class="bi bi-person-badge text-warning"></i><div><div class="fw-semibold" style="font-size:.9rem">Superintending Engineer</div><div class="small text-muted">08562-233100</div></div></div>
+            <div class="contact-row"><i class="bi bi-telephone text-warning"></i><div><div class="fw-semibold" style="font-size:.9rem">Power Helpline</div><div class="small text-muted">1912 / 9000101112</div></div></div>
+            <div class="contact-row"><i class="bi bi-globe text-warning"></i><div><div class="fw-semibold" style="font-size:.9rem">APSPDCL Portal</div><div class="small text-muted">apspdcl.in</div></div></div>
+            <div class="mt-3"><a href="complaint.html?dept=Electricity" class="complaint-btn"><i class="bi bi-exclamation-circle me-1"></i>File Complaint</a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Water Supply -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card dept-hero-card h-100 shadow-sm">
+          <div class="card-header" style="background:linear-gradient(135deg,#0096c7,#0077b6)">
+            <i class="bi bi-droplet-fill display-4 d-block mb-2"></i>
+            <h4 class="fw-bold mb-0">Water Supply Dept.</h4>
+          </div>
+          <div class="card-body">
+            <p class="text-muted small">Ensures safe drinking water, manages water pipelines, Jal Jeevan Mission connections, and repairs water supply infrastructure.</p>
+            <div class="contact-row"><i class="bi bi-person-badge text-info"></i><div><div class="fw-semibold" style="font-size:.9rem">Executive Engineer</div><div class="small text-muted">08562-255100</div></div></div>
+            <div class="contact-row"><i class="bi bi-telephone text-info"></i><div><div class="fw-semibold" style="font-size:.9rem">Water Helpline</div><div class="small text-muted">1800-200-6020</div></div></div>
+            <div class="contact-row"><i class="bi bi-envelope text-info"></i><div><div class="fw-semibold" style="font-size:.9rem">Email</div><div class="small text-muted">ee_ph_kpdy@aprd.ap.gov.in</div></div></div>
+            <div class="mt-3"><a href="complaint.html?dept=Water Supply" class="complaint-btn"><i class="bi bi-exclamation-circle me-1"></i>File Complaint</a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Police -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card dept-hero-card h-100 shadow-sm">
+          <div class="card-header" style="background:linear-gradient(135deg,#1d3461,#0e1d3a)">
+            <i class="bi bi-shield-check display-4 d-block mb-2"></i>
+            <h4 class="fw-bold mb-0">Police Department</h4>
+          </div>
+          <div class="card-body">
+            <p class="text-muted small">Ensures law and order, public safety, handles crime reporting, traffic management, and community policing initiatives.</p>
+            <div class="contact-row"><i class="bi bi-person-badge text-dark"></i><div><div class="fw-semibold" style="font-size:.9rem">Superintendent of Police</div><div class="small text-muted">08562-244300</div></div></div>
+            <div class="contact-row"><i class="bi bi-telephone-fill text-danger"></i><div><div class="fw-semibold" style="font-size:.9rem">Emergency</div><div class="small text-muted fw-bold">100 / 112</div></div></div>
+            <div class="contact-row"><i class="bi bi-globe text-dark"></i><div><div class="fw-semibold" style="font-size:.9rem">AP Police Portal</div><div class="small text-muted">appolice.gov.in</div></div></div>
+            <div class="mt-3"><a href="complaint.html?dept=Police" class="complaint-btn"><i class="bi bi-exclamation-circle me-1"></i>File Complaint</a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Health -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card dept-hero-card h-100 shadow-sm">
+          <div class="card-header" style="background:linear-gradient(135deg,#d90429,#a4000f)">
+            <i class="bi bi-heart-pulse-fill display-4 d-block mb-2"></i>
+            <h4 class="fw-bold mb-0">Health Department</h4>
+          </div>
+          <div class="card-body">
+            <p class="text-muted small">Manages PHCs, CHCs, GH Kadapa, maternal health, immunization programs, and YSR Aarogyasri healthcare scheme.</p>
+            <div class="contact-row"><i class="bi bi-person-badge text-danger"></i><div><div class="fw-semibold" style="font-size:.9rem">District Medical Officer</div><div class="small text-muted">08562-241080</div></div></div>
+            <div class="contact-row"><i class="bi bi-telephone text-danger"></i><div><div class="fw-semibold" style="font-size:.9rem">Ambulance</div><div class="small text-muted fw-bold">108</div></div></div>
+            <div class="contact-row"><i class="bi bi-hospital text-danger"></i><div><div class="fw-semibold" style="font-size:.9rem">GH Kadapa</div><div class="small text-muted">08562-222430</div></div></div>
+            <div class="mt-3"><a href="complaint.html?dept=Health" class="complaint-btn"><i class="bi bi-exclamation-circle me-1"></i>File Complaint</a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card dept-hero-card h-100 shadow-sm">
+          <div class="card-header" style="background:linear-gradient(135deg,#26a96c,#087f5b)">
+            <i class="bi bi-book-fill display-4 d-block mb-2"></i>
+            <h4 class="fw-bold mb-0">Education Department</h4>
+          </div>
+          <div class="card-body">
+            <p class="text-muted small">Oversees government schools, mid-day meals, Jagananna Amma Vodi, scholarships, and Vidya Kanuka kits.</p>
+            <div class="contact-row"><i class="bi bi-person-badge text-success"></i><div><div class="fw-semibold" style="font-size:.9rem">District Education Officer</div><div class="small text-muted">08562-238200</div></div></div>
+            <div class="contact-row"><i class="bi bi-telephone text-success"></i><div><div class="fw-semibold" style="font-size:.9rem">Helpline</div><div class="small text-muted">1800-425-3399</div></div></div>
+            <div class="contact-row"><i class="bi bi-globe text-success"></i><div><div class="fw-semibold" style="font-size:.9rem">AP Schools Portal</div><div class="small text-muted">apschools.gov.in</div></div></div>
+            <div class="mt-3"><a href="complaint.html?dept=Education" class="complaint-btn"><i class="bi bi-exclamation-circle me-1"></i>File Complaint</a></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    <!-- Footer -->
+    <footer class="footer pt-5 pb-3">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <h4 class="fw-bold mb-4">Kadapa Smart District</h4>
+                    <p class="opacity-75">An initiative by the District Administration of Kadapa to bring governance closer to people through technology and transparency.</p>
+                    <div class="social-links mt-4">
+                        <a href="#" class="me-3 text-white"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="me-3 text-white"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" class="me-3 text-white"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="fw-bold mb-4">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="about.html" class="text-white opacity-75 text-decoration-none">About District</a></li>
+                        <li class="mb-2"><a href="mandals.html" class="text-white opacity-75 text-decoration-none">Mandals</a></li>
+                        <li class="mb-2"><a href="departments.html" class="text-white opacity-75 text-decoration-none">Departments</a></li>
+                        <li class="mb-2"><a href="complaint.html" class="text-white opacity-75 text-decoration-none">Grievance Portal</a></li>
+                        <li class="mb-2"><a href="tourism.html" class="text-white opacity-75 text-decoration-none">Tourism</a></li>
+                        <li class="mb-2"><a href="news.html" class="text-white opacity-75 text-decoration-none">News</a></li>
+                        <li class="mb-2"><a href="contact.html" class="text-white opacity-75 text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="fw-bold mb-4">Contact Info</h5>
+                    <ul class="list-unstyled text-white opacity-75">
+                        <li class="mb-3 d-flex align-items-start">
+                            <i class="bi bi-geo-alt me-2 mt-1"></i>
+                            <span>Collectorate Office, <br>YSR Kadapa District, AP - 516001</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-telephone me-2"></i>
+                            <span>08562 - 244400</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="fw-bold mb-4">Newsletter</h5>
+                    <p class="small opacity-75">Get latest updates from the district administration.</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Email Address">
+                        <button class="btn btn-accent">Join</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-5 opacity-25">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small mb-0 opacity-50">&copy; 2026 District Administration, Kadapa. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="small mb-0 opacity-50">Designed & Developed by Antigravity AI</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

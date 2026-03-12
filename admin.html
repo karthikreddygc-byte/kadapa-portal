@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard | Kadapa Smart District Portal</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="css/style.css">
+<style>
+body{background:#f0f2f5;font-family:'Inter',sans-serif}
+.admin-sidebar{width:260px;background:var(--primary-color);min-height:100vh;position:fixed;top:0;left:0;z-index:100;transition:all .3s}
+.admin-sidebar .nav-link{color:rgba(255,255,255,.65);border-radius:10px;margin:.2rem .75rem;padding:.7rem 1rem;font-weight:500;transition:all .2s}
+.admin-sidebar .nav-link:hover,.admin-sidebar .nav-link.active{background:rgba(255,255,255,.1);color:white}
+.admin-sidebar .nav-link i{width:22px;margin-right:.6rem}
+.admin-main{margin-left:260px;min-height:100vh;padding:0}
+.admin-topbar{background:white;border-bottom:1px solid #e0e0e0;padding:.9rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.stat-widget{background:white;border-radius:16px;padding:1.5rem;box-shadow:0 2px 10px rgba(0,0,0,.05);transition:all .2s}
+.stat-widget:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.09)}
+.stat-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+.table th{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#888;background:#f8f9fa;border-top:none}
+.badge-registered{background:#6c757d}
+.badge-inprogress{background:#f58220}
+.badge-resolved{background:#28a745}
+.status-select{border:none;padding:.2rem .5rem;border-radius:8px;font-size:.8rem;font-weight:600;cursor:pointer}
+@media(max-width:991px){.admin-sidebar{transform:translateX(-100%)}.admin-main{margin-left:0}}
+</style>
+</head>
+<body>
+
+<!-- Auth guard -->
+<script>
+if (sessionStorage.getItem('kadapa_admin_auth') !== 'true') {
+  window.location.href = 'login.html';
+}
+</script>
+
+<!-- Sidebar -->
+<div class="admin-sidebar" id="sidebar">
+  <div class="p-4 border-bottom" style="border-color:rgba(255,255,255,.1)!important">
+    <div class="d-flex align-items-center gap-3">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Emblem_of_Andhra_Pradesh.svg" alt="Logo" height="40">
+      <div><div class="fw-bold text-white">Kadapa Admin</div><div class="small opacity-50 text-white">Command Center</div></div>
+    </div>
+  </div>
+  <nav class="nav flex-column pt-3">
+    <a class="nav-link active" href="#" onclick="showPanel('dashboard')"><i class="bi bi-grid-1x2-fill"></i>Dashboard</a>
+    <a class="nav-link" href="#" onclick="showPanel('complaints')"><i class="bi bi-chat-dots-fill"></i>Complaints</a>
+    <a class="nav-link" href="#" onclick="showPanel('analytics')"><i class="bi bi-bar-chart-fill"></i>Analytics</a>
+    <a class="nav-link" href="#" onclick="showPanel('news')"><i class="bi bi-newspaper"></i>News Manager</a>
+    <hr style="border-color:rgba(255,255,255,.1);margin:.5rem 1rem">
+    <a class="nav-link" href="index.html"><i class="bi bi-house-fill"></i>View Portal</a>
+    <a class="nav-link text-danger" href="#" onclick="logoutAdmin()"><i class="bi bi-box-arrow-left"></i>Logout</a>
+  </nav>
+</div>
+
+<!-- Main -->
+<div class="admin-main">
+  <div class="admin-topbar">
+    <div class="d-flex align-items-center gap-3">
+      <button class="btn btn-sm btn-outline-secondary d-lg-none" onclick="document.getElementById('sidebar').style.transform='translateX(0)'"><i class="bi bi-list"></i></button>
+      <h5 class="fw-bold mb-0" id="panelTitle">Dashboard</h5>
+    </div>
+    <div class="d-flex align-items-center gap-3">
+      <span class="badge bg-success rounded-pill px-3 py-2">● Live</span>
+      <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center fw-bold" style="width:38px;height:38px" id="adminAvatar">A</div>
+    </div>
+  </div>
+
+  <div class="p-4">
+
+    <!-- Dashboard Panel -->
+    <div id="panel-dashboard">
+      <div class="row g-4 mb-4">
+        <div class="col-6 col-lg-3">
+          <div class="stat-widget">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div class="stat-icon bg-primary bg-opacity-10 text-primary"><i class="bi bi-chat-dots-fill"></i></div>
+              <span class="badge bg-primary bg-opacity-10 text-primary small">Total</span>
+            </div>
+            <h3 class="fw-black mb-1" id="stat-total">0</h3>
+            <div class="small text-muted">Total Complaints</div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="stat-widget">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div class="stat-icon bg-warning bg-opacity-10 text-warning"><i class="bi bi-hourglass-split"></i></div>
+              <span class="badge bg-warning bg-opacity-10 text-warning small">Pending</span>
+            </div>
+            <h3 class="fw-black mb-1" id="stat-pending">0</h3>
+            <div class="small text-muted">Registered</div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="stat-widget">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div class="stat-icon bg-info bg-opacity-10 text-info"><i class="bi bi-gear-wide-connected"></i></div>
+              <span class="badge bg-info bg-opacity-10 text-info small">Active</span>
+            </div>
+            <h3 class="fw-black mb-1" id="stat-progress">0</h3>
+            <div class="small text-muted">In Progress</div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="stat-widget">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div class="stat-icon bg-success bg-opacity-10 text-success"><i class="bi bi-check-circle-fill"></i></div>
+              <span class="badge bg-success bg-opacity-10 text-success small">Done</span>
+            </div>
+            <h3 class="fw-black mb-1" id="stat-resolved">0</h3>
+            <div class="small text-muted">Resolved</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts -->
+      <div class="row g-4 mb-4">
+        <div class="col-lg-7">
+          <div class="stat-widget">
+            <h6 class="fw-bold mb-3">Complaints by Department</h6>
+            <canvas id="deptChart" height="220"></canvas>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="stat-widget">
+            <h6 class="fw-bold mb-3">Status Breakdown</h6>
+            <canvas id="statusChart" height="220"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Complaints -->
+      <div class="stat-widget">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h6 class="fw-bold mb-0">Recent Complaints</h6>
+          <button class="btn btn-sm btn-outline-primary rounded-pill" onclick="showPanel('complaints')">View All</button>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover align-middle">
+            <thead><tr><th>ID</th><th>Department</th><th>Mandal</th><th>Status</th><th>Date</th></tr></thead>
+            <tbody id="recentTable"><tr><td colspan="5" class="text-center text-muted py-4">No complaints yet. <a href="complaint.html">Submit a test complaint</a></td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Complaints Panel -->
+    <div id="panel-complaints" class="d-none">
+      <div class="row g-3 mb-4">
+        <div class="col-md-3"><select class="form-select" id="filterDept" onchange="loadComplaints()"><option value="">All Departments</option><option>Revenue</option><option>Municipal</option><option>Electricity</option><option>Water Supply</option><option>Police</option><option>Health</option><option>Education</option></select></div>
+        <div class="col-md-3"><select class="form-select" id="filterStatus" onchange="loadComplaints()"><option value="">All Status</option><option>Registered</option><option>In Progress</option><option>Resolved</option></select></div>
+        <div class="col-md-6"><input type="text" class="form-control" id="filterSearch" placeholder="🔍  Search by ID or Name..." oninput="loadComplaints()"></div>
+      </div>
+      <div class="stat-widget">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle">
+            <thead><tr><th>ID</th><th>Name</th><th>Department</th><th>Mandal</th><th>Subject</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody id="allComplaintsTable"><tr><td colspan="7" class="text-center text-muted py-4">No complaints found.</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Analytics Panel -->
+    <div id="panel-analytics" class="d-none">
+      <div class="row g-4">
+        <div class="col-lg-8">
+          <div class="stat-widget">
+            <h6 class="fw-bold mb-3">Complaint Trend (Simulated - Daily)</h6>
+            <canvas id="trendChart" height="180"></canvas>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="stat-widget h-100">
+            <h6 class="fw-bold mb-4">Resolution Rate</h6>
+            <canvas id="resolveChart"></canvas>
+            <p class="text-center text-muted small mt-3" id="resolveText">Calculating...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- News Manager Panel -->
+    <div id="panel-news" class="d-none">
+      <div class="stat-widget">
+        <h6 class="fw-bold mb-4">Post New Announcement</h6>
+        <div class="row g-3">
+          <div class="col-md-8"><label class="form-label fw-semibold small">Announcement Title</label><input type="text" id="ann-title" class="form-control" placeholder="Enter announcement title"></div>
+          <div class="col-md-4"><label class="form-label fw-semibold small">Category</label><select id="ann-cat" class="form-select"><option>General</option><option>Health</option><option>Education</option><option>Water</option><option>Revenue</option><option>Electricity</option></select></div>
+          <div class="col-12"><label class="form-label fw-semibold small">Content</label><textarea id="ann-body" class="form-control" rows="4" placeholder="Announcement content..."></textarea></div>
+          <div class="col-12"><button class="btn btn-accent rounded-pill px-4" onclick="postAnnouncement()"><i class="bi bi-send me-2"></i>Post Announcement</button></div>
+        </div>
+        <hr class="my-4">
+        <h6 class="fw-bold mb-3">Posted Announcements</h6>
+        <div id="announcementList"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+let deptChart, statusChart, trendChart, resolveChart;
+
+window.addEventListener('DOMContentLoaded', () => {
+  const u = sessionStorage.getItem('kadapa_admin_user') || 'admin';
+  document.getElementById('adminAvatar').textContent = u[0].toUpperCase();
+  loadDashboard();
+  renderAnnouncements();
+});
+
+async function showPanel(name) {
+  ['dashboard','complaints','analytics','news'].forEach(p => {
+    document.getElementById('panel-' + p).classList.add('d-none');
+  });
+  document.getElementById('panel-' + name).classList.remove('d-none');
+  document.getElementById('panelTitle').textContent = name.charAt(0).toUpperCase() + name.slice(1);
+  document.querySelectorAll('.admin-sidebar .nav-link').forEach(l => l.classList.remove('active'));
+  if (name === 'dashboard') await loadDashboard();
+  if (name === 'complaints') await loadComplaints();
+  if (name === 'analytics') await loadAnalytics();
+  if (name === 'news') await renderAnnouncements();
+}
+
+async function loadDashboard() {
+  const stats = await getStats();
+  const all = await getAllComplaints();
+  
+  document.getElementById('stat-total').textContent = stats.total;
+  document.getElementById('stat-pending').textContent = stats.registered;
+  document.getElementById('stat-progress').textContent = stats.inProgress;
+  document.getElementById('stat-resolved').textContent = stats.resolved;
+
+  // Recent table
+  const tbody = document.getElementById('recentTable');
+  const recent = all.slice(0, 5);
+  if (!recent.length) { tbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-4">No complaints yet. <a href="complaint.html">Submit a test complaint</a></td></tr>'; }
+  else {
+    tbody.innerHTML = recent.map(c => `<tr>
+      <td><code class="small">${c.id}</code></td>
+      <td>${c.department}</td>
+      <td>${c.mandal}</td>
+      <td><span class="badge badge-${c.status === 'Registered' ? 'registered' : c.status === 'In Progress' ? 'inprogress' : 'resolved'}">${c.status}</span></td>
+      <td class="small">${formatDate(c.createdAt)}</td>
+    </tr>`).join('');
+  }
+
+  // Dept chart
+  const depts = ['Revenue','Municipal','Electricity','Water Supply','Police','Health','Education'];
+  let deptCounts = depts.map(d => all.filter(c => c.department === d).length);
+  const ctxD = document.getElementById('deptChart').getContext('2d');
+  if (deptChart) deptChart.destroy();
+  deptChart = new Chart(ctxD, { type: 'bar', data: { labels: depts, datasets: [{ label: 'Complaints', data: deptCounts, backgroundColor: ['#4361ee','#7209b7','#f7b731','#0096c7','#1d3461','#d90429','#26a96c'], borderRadius: 8 }] }, options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } } });
+
+  // Status chart
+  const ctxS = document.getElementById('statusChart').getContext('2d');
+  if (statusChart) statusChart.destroy();
+  statusChart = new Chart(ctxS, { type: 'doughnut', data: { labels: ['Registered','In Progress','Resolved'], datasets: [{ data: [stats.registered, stats.inProgress, stats.resolved], backgroundColor: ['#6c757d','#f58220','#28a745'], borderWidth: 0, hoverOffset: 8 }] }, options: { cutout: '70%', plugins: { legend: { position: 'bottom' } } } });
+}
+
+async function loadComplaints() {
+  const dept = document.getElementById('filterDept').value;
+  const status = document.getElementById('filterStatus').value;
+  const search = document.getElementById('filterSearch').value.toLowerCase();
+  
+  let all = await getAllComplaints({ department: dept, status: status });
+  if (search) all = all.filter(c => c.id.toLowerCase().includes(search) || (c.name || '').toLowerCase().includes(search));
+
+  const tbody = document.getElementById('allComplaintsTable');
+  if (!all.length) { tbody.innerHTML = '<tr><td colspan="7" class="text-center text-muted py-4">No complaints match filters.</td></tr>'; return; }
+  tbody.innerHTML = all.map(c => `<tr>
+    <td><code class="small">${c.id}</code></td>
+    <td>${c.name || '—'}</td>
+    <td>${c.department}</td>
+    <td>${c.mandal}</td>
+    <td class="small" style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${c.subject}">${c.subject}</td>
+    <td><span class="badge badge-${c.status === 'Registered' ? 'registered' : c.status === 'In Progress' ? 'inprogress' : 'resolved'}">${c.status}</span></td>
+    <td>
+      <select class="status-select form-select form-select-sm" style="width:130px" onchange="changeStatus('${c.id}',this.value)">
+        <option ${c.status==='Registered'?'selected':''}>Registered</option>
+        <option ${c.status==='In Progress'?'selected':''}>In Progress</option>
+        <option ${c.status==='Resolved'?'selected':''}>Resolved</option>
+      </select>
+    </td>
+  </tr>`).join('');
+}
+
+async function changeStatus(id, status) {
+  const success = await updateComplaintStatus(id, status);
+  if (success) {
+    await loadComplaints();
+    await loadDashboard();
+  }
+}
+
+async function loadAnalytics() {
+  // Trend chart (simulated data)
+  const labels = ['Day 1','Day 2','Day 3','Day 4','Day 5','Day 6','Day 7'];
+  const data = labels.map(() => Math.floor(Math.random() * 15 + 2));
+  const ctxT = document.getElementById('trendChart').getContext('2d');
+  if (trendChart) trendChart.destroy();
+  trendChart = new Chart(ctxT, { type: 'line', data: { labels, datasets: [{ label: 'Complaints', data, borderColor: '#f58220', backgroundColor: 'rgba(245,130,32,.1)', fill: true, tension: .4, pointRadius: 5, pointBackgroundColor: '#f58220' }] }, options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } } });
+
+  const stats = await getStats();
+  const rate = stats.total ? Math.round((stats.resolved / stats.total) * 100) : 0;
+  const ctxR = document.getElementById('resolveChart').getContext('2d');
+  if (resolveChart) resolveChart.destroy();
+  resolveChart = new Chart(ctxR, { type: 'doughnut', data: { labels: ['Resolved','Pending'], datasets: [{ data: [rate, 100 - rate], backgroundColor: ['#28a745','#e9ecef'], borderWidth: 0 }] }, options: { cutout: '80%', plugins: { legend: { display: false } } } });
+  document.getElementById('resolveText').textContent = `${rate}% Resolution Rate`;
+}
+
+async function postAnnouncement() {
+  const title = document.getElementById('ann-title').value.trim();
+  const body = document.getElementById('ann-body').value.trim();
+  const category = document.getElementById('ann-cat').value;
+  if (!title || !body) { alert('Please fill in title and content.'); return; }
+  
+  const result = await saveAnnouncement({ title, body, category });
+  if (result.success) {
+    document.getElementById('ann-title').value = '';
+    document.getElementById('ann-body').value = '';
+    await renderAnnouncements();
+  }
+}
+
+async function renderAnnouncements() {
+  const list = await getAnnouncements();
+  const el = document.getElementById('announcementList');
+  if (!list.length) { el.innerHTML = '<p class="text-muted small">No announcements posted yet.</p>'; return; }
+  el.innerHTML = list.map((a, i) => `
+    <div class="border rounded-3 p-3 mb-2 d-flex justify-content-between align-items-start">
+      <div><span class="badge bg-secondary me-2">${a.category || a.cat}</span><strong>${a.title}</strong><div class="small text-muted mt-1">${a.body.slice(0, 80)}...</div><div class="small text-muted mt-1">${formatDate(a.createdAt || a.date)}</div></div>
+      <button class="btn btn-sm btn-outline-danger rounded-pill ms-3" onclick="deleteAnn('${a._id || i}')">Delete</button>
+    </div>`).join('');
+}
+
+async function deleteAnn(id) {
+  if (confirm('Are you sure you want to delete this announcement?')) {
+    await deleteAnnouncement(id);
+    await renderAnnouncements();
+  }
+}
+
+function logoutAdmin() {
+  sessionStorage.removeItem('kadapa_admin_auth');
+  sessionStorage.removeItem('kadapa_admin_user');
+  window.location.href = 'login.html';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kadapa Smart District Portal | Official Government of Andhra Pradesh</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Official portal for Kadapa District, Andhra Pradesh. Access government departments, submit citizen complaints, explore tourism, and get latest district news.">
+    <meta name="keywords" content="Kadapa, YSR District, Andhra Pradesh, Smart District, Citizen Portal, Grievance, Tourism Kadapa, Gandikota">
+    <meta name="author" content="Kadapa District Administration">
+    <link rel="canonical" href="https://kadapa.ap.gov.in">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Kadapa Smart District Portal">
+    <meta property="og:description" content="Your one-stop destination for all district services and information in Kadapa.">
+    <meta property="og:image" content="assets/kadapa_hero.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar py-2">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="gov-links small">
+                <a href="#" class="me-3">Government of Andhra Pradesh</a>
+                <a href="#">Official Portal</a>
+            </div>
+            <div class="utility-links d-flex align-items-center">
+                <div class="language-switch me-3">
+                    <button class="btn btn-sm btn-outline-light lang-btn active" data-lang="en">English</button>
+                    <button class="btn btn-sm btn-outline-light lang-btn" data-lang="te">తెలుగు</button>
+                </div>
+                <div class="accessibility-tools">
+                    <button id="btn-font-dec" class="btn btn-sm text-white" title="Decrease font size">A-</button>
+                    <button id="btn-font-reset" class="btn btn-sm text-white" title="Reset font size">A</button>
+                    <button id="btn-font-inc" class="btn btn-sm text-white" title="Increase font size">A+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Emblem_of_Andhra_Pradesh.svg" alt="GoAP Logo" height="50" class="me-3">
+                <div class="brand-text">
+                    <span class="d-block fw-bold h5 mb-0">KADAPA</span>
+                    <span class="small opacity-75 text-uppercase ls-1">Smart District Portal</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="about.html">District Overview</a></li>
+                            <li><a class="dropdown-item" href="about.html#history">History</a></li>
+                            <li><a class="dropdown-item" href="about.html#culture">Culture</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="mandals.html">Mandals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="departments.html">Departments</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tourism.html">Tourism</a></li>
+                    <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold text-accent" href="complaint.html">Grievance</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a href="login.html" class="btn btn-accent rounded-pill px-4">Admin Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container h-100 d-flex flex-column justify-content-center position-relative z-1">
+            <div class="row">
+                <div class="col-lg-7 text-white mt-5">
+                    <h6 class="text-uppercase fw-bold ls-2 text-accent mb-3">Welcome to Kadapa District</h6>
+                    <h1 class="display-3 fw-bold mb-4" data-i18n="hero-title">Empowering Citizens Through Digital Governance</h1>
+                    <p class="lead mb-5 opacity-90" data-i18n="hero-sub">Experience seamless access to government services, district information, and interactive grievance redressal system.</p>
+                    <div class="d-flex gap-3 mt-4">
+                        <a href="complaint.html" class="btn btn-accent btn-lg px-5 py-3 rounded-pill shadow-lg" data-i18n="submit-grievance">Submit Grievance</a>
+                        <a href="departments.html" class="btn btn-outline-light btn-lg px-5 py-3 rounded-pill" data-i18n="explore-services">Explore Services</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Statistics Section -->
+    <section class="stats-bar py-5">
+        <div class="container">
+            <div class="row text-center g-4">
+                <div class="col-6 col-md-3">
+                    <div class="stat-card p-4">
+                        <h2 class="fw-black h1 mb-1">51</h2>
+                        <span class="text-uppercase small fw-bold text-muted">Mandals</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-card p-4">
+                        <h2 class="fw-black h1 mb-1">15K+</h2>
+                        <span class="text-uppercase small fw-bold text-muted">KM² Area</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-card p-4">
+                        <h2 class="fw-black h1 mb-1">2.8M</h2>
+                        <span class="text-uppercase small fw-bold text-muted">Population</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-card p-4">
+                        <h2 class="fw-black h1 mb-1">98%</h2>
+                        <span class="text-uppercase small fw-bold text-muted">Grievance Resolution</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Essential Links -->
+    <section class="quick-links py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Essential Services</h2>
+                <p class="text-muted">Quick access to frequently used citizen services</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4 col-lg-3">
+                    <a href="complaint.html" class="service-card d-block p-4 text-center text-decoration-none shadow-sm rounded-4 transition">
+                        <i class="bi bi-chat-left-dots h2 text-primary mb-3 d-block"></i>
+                        <h5 class="fw-bold text-dark">Submit Complaint</h5>
+                        <p class="small text-muted mb-0">Register your grievances directly with the district administration.</p>
+                    </a>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <a href="track.html" class="service-card d-block p-4 text-center text-decoration-none shadow-sm rounded-4 transition">
+                        <i class="bi bi-search h2 text-success mb-3 d-block"></i>
+                        <h5 class="fw-bold text-dark">Track Status</h5>
+                        <p class="small text-muted mb-0">Real-time tracking of your submitted grievances.</p>
+                    </a>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <a href="departments.html" class="service-card d-block p-4 text-center text-decoration-none shadow-sm rounded-4 transition">
+                        <i class="bi bi-building h2 text-warning mb-3 d-block"></i>
+                        <h5 class="fw-bold text-dark">Govt. Departments</h5>
+                        <p class="small text-muted mb-0">Directory of all district heads and office contacts.</p>
+                    </a>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <a href="tourism.html" class="service-card d-block p-4 text-center text-decoration-none shadow-sm rounded-4 transition">
+                        <i class="bi bi-camera h2 text-danger mb-3 d-block"></i>
+                        <h5 class="fw-bold text-dark">Explore Tourism</h5>
+                        <p class="small text-muted mb-0">Discover Gandikota, Vontimitta and other scenic spots.</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Preview Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-5">
+                <div>
+                    <h2 class="fw-bold mb-1">Latest News & Announcements</h2>
+                    <p class="text-muted mb-0">Stay updated with district news.</p>
+                </div>
+                <a href="news.html" class="btn btn-outline-primary rounded-pill px-4">View All →</a>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+                        <div class="p-4">
+                            <span class="badge bg-primary rounded-pill mb-3">Water</span>
+                            <h5 class="fw-bold">Jal Jeevan Mission: 45,000 Households Get Tap Connections</h5>
+                            <p class="text-muted small">Under the Jal Jeevan Mission, Kadapa district achieved a milestone of providing safe tap water to rural households.</p>
+                            <span class="small text-muted"><i class="bi bi-calendar3 me-1"></i>March 10, 2026</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+                        <div class="p-4">
+                            <span class="badge bg-danger rounded-pill mb-3">Health</span>
+                            <h5 class="fw-bold">YSR Aarogyasri Camp Provides Free Surgery to 800 Patients</h5>
+                            <p class="text-muted small">A mega health camp at GH Kadapa provided free surgeries to 800+ beneficiaries from remote mandals.</p>
+                            <span class="small text-muted"><i class="bi bi-calendar3 me-1"></i>March 8, 2026</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+                        <div class="p-4">
+                            <span class="badge bg-success rounded-pill mb-3">Education</span>
+                            <h5 class="fw-bold">Jagananna Vidya Kanuka Kit Distribution Begins in Schools</h5>
+                            <p class="text-muted small">School kits distributed to 1.2 lakh students across 1,800 government schools in the district.</p>
+                            <span class="small text-muted"><i class="bi bi-calendar3 me-1"></i>March 5, 2026</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer pt-5 pb-3">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <h4 class="fw-bold mb-4">Kadapa Smart District</h4>
+                    <p class="opacity-75">An initiative by the District Administration of Kadapa to bring governance closer to people through technology and transparency.</p>
+                    <div class="social-links mt-4">
+                        <a href="#" class="me-3 text-white"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="me-3 text-white"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" class="me-3 text-white"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="fw-bold mb-4">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="about.html" class="text-white opacity-75 text-decoration-none">About District</a></li>
+                        <li class="mb-2"><a href="mandals.html" class="text-white opacity-75 text-decoration-none">Mandals</a></li>
+                        <li class="mb-2"><a href="departments.html" class="text-white opacity-75 text-decoration-none">Departments</a></li>
+                        <li class="mb-2"><a href="complaint.html" class="text-white opacity-75 text-decoration-none">Grievance Portal</a></li>
+                        <li class="mb-2"><a href="tourism.html" class="text-white opacity-75 text-decoration-none">Tourism</a></li>
+                        <li class="mb-2"><a href="news.html" class="text-white opacity-75 text-decoration-none">News</a></li>
+                        <li class="mb-2"><a href="contact.html" class="text-white opacity-75 text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="fw-bold mb-4">Contact Info</h5>
+                    <ul class="list-unstyled text-white opacity-75">
+                        <li class="mb-3 d-flex align-items-start">
+                            <i class="bi bi-geo-alt me-2 mt-1"></i>
+                            <span>Collectorate Office, <br>YSR Kadapa District, AP - 516001</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-telephone me-2"></i>
+                            <span>08562 - 244400</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="fw-bold mb-4">Newsletter</h5>
+                    <p class="small opacity-75">Get latest updates from the district administration.</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Email Address">
+                        <button class="btn btn-accent">Join</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-5 opacity-25">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small mb-0 opacity-50">&copy; 2026 District Administration, Kadapa. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="small mb-0 opacity-50">Designed & Developed by Antigravity AI</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+    window.addEventListener('DOMContentLoaded', async () => {
+        const list = await getAnnouncements();
+        if (!list || list.length === 0) return;
+
+        const newsContainer = document.querySelector('.news-preview-section .row.g-4') || document.querySelector('section .row.g-4:has(.card)');
+        if (!newsContainer) return;
+
+        let newsHtml = '';
+        const top3 = list.slice(0, 3);
+        
+        const badgeColors = {
+            'Water': 'primary',
+            'Health': 'danger',
+            'Education': 'success',
+            'Environment': 'warning',
+            'General': 'secondary'
+        };
+
+        top3.forEach(a => {
+            const cat = a.category || a.cat || 'General';
+            const color = badgeColors[cat] || 'secondary';
+            newsHtml += `
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+                    <div class="p-4">
+                        <span class="badge bg-${color} rounded-pill mb-3">${cat}</span>
+                        <h5 class="fw-bold">${a.title}</h5>
+                        <p class="text-muted small">${a.body.length > 120 ? a.body.substring(0, 120) + '...' : a.body}</p>
+                        <span class="small text-muted"><i class="bi bi-calendar3 me-1"></i>${formatDate(a.createdAt || a.date)}</span>
+                    </div>
+                </div>
+            </div>`;
+        });
+        
+        if (newsHtml) newsContainer.innerHTML = newsHtml;
+    });
+    </script>
+</body>
+</html>
